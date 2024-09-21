@@ -14,8 +14,11 @@ import {
   faUser as faUserSolid,
   faTerminal,
   faEnvelope,
+  faCode,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { SiNextdotjs, SiRust, SiTailwindcss, SiRedux } from "react-icons/si";
+
 import { IconType } from 'react-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
@@ -26,15 +29,15 @@ export default function Skills() {
 
   const skills = [
     { icon: faReact, text: "React" },
-    { CustomIcon: SiNextdotjs, text: "Next.js" },
-    { CustomIcon: SiTailwindcss, text: "Tailwind" },
+    { icon: SiNextdotjs, text: "Next.js" },
+    { icon: SiTailwindcss, text: "Tailwind" },
     { icon: faJs, text: "TypeScript" },
     { icon: faNodeJs, text: "Node.js" },
-    { CustomIcon: SiRust, text: "Rust" },
+    { icon: SiRust, text: "Rust" },
     { icon: faPython, text: "Python" },
     { icon: faDatabase, text: "MongoDB" },
     { icon: faDocker, text: "Docker" },
-    { CustomIcon: SiRedux, text: "Redux" },
+    { icon: SiRedux, text: "Redux" },
   ];
 
   useEffect(() => {
@@ -73,8 +76,7 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <SkillIcon 
               key={index} 
-              icon={skill.icon} 
-              CustomIcon={skill.CustomIcon} 
+              icon={skill.icon}
               text={skill.text} 
             />
           ))}
@@ -139,23 +141,15 @@ export default function Skills() {
 }
 
 interface SkillIconProps {
-  icon?: IconDefinition;
-  CustomIcon?: IconType;
+  icon: IconDefinition | IconType;
   text: string;
 }
 
-function SkillIcon({ icon, CustomIcon, text }: SkillIconProps) {
+function SkillIcon({ icon, text }: SkillIconProps) {
   return (
     <div className="flex items-center">
       <span className="mr-2">{'>'}</span>
-      {icon ? (
-        <FontAwesomeIcon
-          icon={icon}
-          className="w-6 h-6 mr-2"
-        />
-      ) : CustomIcon ? (
-        <CustomIcon className="w-6 h-6 mr-2" />
-      ) : null}
+      {React.createElement(icon as IconType, { className: "w-6 h-6 mr-2" })}
       <span>{text}</span>
     </div>
   );
