@@ -90,8 +90,8 @@ export default function Projects() {
                 <Image 
                   src={project.image}
                   alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               {/* ... rest of the project card JSX */}

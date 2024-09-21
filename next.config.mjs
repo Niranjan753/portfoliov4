@@ -4,7 +4,6 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
-  // Add these lines
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -13,10 +12,6 @@ const nextConfig = {
       };
     }
     return config;
-  },
-  // Add this line to disable tracing
-  experimental: {
-    trace: false,
   },
 };
 
